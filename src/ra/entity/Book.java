@@ -130,25 +130,25 @@ public class Book implements IBook,Serializable, Comparator<Book> {
     @Override
     public void inputData() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("nhap id");
+        System.out.println("Id của sách:");
         this.bookId = pushBookId(sc, BookMethod.bookList);
-        System.out.println("nhap ten");
+        System.out.println("Tên sách:");
         this.bookName = pushBookName(sc);
-        System.out.println("nhap gia sach");
+        System.out.println("Giá sách:");
         this.importPrice = pushBookPice(sc);
-        System.out.println("nhap gia ban");
+        System.out.println("Giá bán:");
         this.exportPrice = pushExportBookPrice(sc, this.importPrice);
-        System.out.println("nhap so luong sach");
+        System.out.println("Số lượng");
         this.quantity = pushBookQuantity(sc);
-        System.out.println("nhap tieu de sach");
+        System.out.println("Tiêu đề:");
         this.tittle = sc.nextLine();
-        System.out.println("nhap noi dung sach");
+        System.out.println("Nội dung:");
         this.content = sc.nextLine();
-        System.out.println("nha xuat ban");
+        System.out.println("Nhà xuất bản:");
         this.publishing = sc.nextLine();
-        System.out.println("Trang thai sach");
+        System.out.println("Trạng thái của sách:");
         this.bookStatus = Boolean.parseBoolean(sc.nextLine());
-        System.out.println("Chon tac gia");
+        System.out.println("Chọn tác giả");
         this.authorArrayList = pushAuthorbook(sc);
 
     }
@@ -169,16 +169,16 @@ public class Book implements IBook,Serializable, Comparator<Book> {
                         if (check) {
                             break;
                         } else {
-                            System.out.println(" BookId da bi trung.");
+                            System.out.println("Id đã tồn tại.");
                         }
                     } else {
-                        System.out.println("BookId phai bat dau tu ki tu B.");
+                        System.out.println("Id phải bắt đầu từ kí tự B.");
                     }
                 } else {
-                    System.out.println("BookId phai gom 5 ki tu");
+                    System.out.println("Id phải gồm 5 kí tự.");
                 }
             } else {
-                System.out.println("khong duoc de trong id");
+                System.out.println("Không để trống Id.");
             }
         } while (true);
 
@@ -196,7 +196,7 @@ public class Book implements IBook,Serializable, Comparator<Book> {
                     System.out.println("Tên sách có từ 10-100 ký tự");
                 }
             } else {
-                System.out.println("khong duoc de trong id");
+                System.out.println("Không để trống Id");
             }
         } while (true);
         return bookName;
@@ -210,10 +210,10 @@ public class Book implements IBook,Serializable, Comparator<Book> {
                 if (inputPice > 0) {
                     break;
                 } else {
-                    System.out.println("gia sach phai lon hon 0.");
+                    System.out.println("Giá sách phải lớn hơn 0.");
                 }
             } catch (Exception e) {
-                System.out.println("Sai dinh dang, nhap lai");
+                System.out.println("Sai định dạng, nhập lại");
             }
 
         } while (true);
@@ -226,16 +226,16 @@ public class Book implements IBook,Serializable, Comparator<Book> {
             try {
                 inputExPice = Float.parseFloat(sc.nextLine());
                 if (inputExPice > 0) {
-                    if (inputExPice > (importPrice + importPrice * 0.2)) {
+                    if (inputExPice >= (importPrice + importPrice * 0.2)) {
                         break;
                     } else {
-                        System.out.println("Gia sach phai lon hon gia nhap.");
+                        System.out.println("Giá sách phải lớn hơn giá nhập 20%.");
                     }
                 } else {
-                    System.out.println("gia sach phai lon hon 0.");
+                    System.out.println("giá sách phải lớn hơn 0.");
                 }
             } catch (Exception e) {
-                System.out.println("Sai dinh dang, nhap lai.");
+                System.out.println("Sai định dạng, nhập lại.");
             }
 
         } while (true);
@@ -247,13 +247,13 @@ public class Book implements IBook,Serializable, Comparator<Book> {
         do {
             try {
                 inputQuantity = Integer.parseInt(sc.nextLine());
-                if (inputQuantity >= 0) {
+                if (inputQuantity > 0) {
                     break;
                 } else {
-                    System.out.println("So luong nhap vao phai lon hon hoac bang 0");
+                    System.out.println("Số lượng phải lớn hơn 0");
                 }
             } catch (Exception e) {
-                System.out.println("Sai dinh dang, nhap lai: ");
+                System.out.println("Sai định dạng, nhập lại: ");
             }
         } while (true);
         return inputQuantity;
@@ -262,11 +262,11 @@ public class Book implements IBook,Serializable, Comparator<Book> {
     public static ArrayList<Author> pushAuthorbook(Scanner sc) {
         ArrayList<Author> authorListofBook=new ArrayList<>();
         do {
-            System.out.println("Danh sach tac gia");
+            System.out.println("Danh sách tác giả:");
             for (Author author : AuthorMethod.authorList) {
-                System.out.printf("%d.  %s\n ", author.getAuthorId(), author.getAuthorName());
+                System.out.printf("%d.  %s\n",author.getAuthorId(), author.getAuthorName());
             }
-            System.out.println("lua chon cua ban la");
+            System.out.println("Lựa chọn của bạn là");
             int choice = BookManagement.checkChoice(1,AuthorMethod.authorList.size()+1);
             for (Author author : AuthorMethod.authorList) {
                 if (choice == author.getAuthorId()) {
@@ -284,12 +284,12 @@ public class Book implements IBook,Serializable, Comparator<Book> {
                             authorListofBook.add(author);
                             break;
                         } else {
-                            System.out.println("ten tac gia da ton tai");
+                            System.out.println("Tên tác giả đã tồn tại.");
                         }
                     }
                 }
             }
-            System.out.println(" ban co muon add them tac gia khong");
+            System.out.println("Bạn có muốn thêm tác giả khác không?");
             System.out.println("1. yes    2.No");
             int inputchoice = Integer.parseInt(sc.nextLine());
             if (inputchoice != 1) {
@@ -317,11 +317,10 @@ public class Book implements IBook,Serializable, Comparator<Book> {
 
     @Override
     public void displayData() {
-        System.out.printf("%s, %s, %f, %f, %f, %d, %s, %s, %b ", bookId, bookName, importPrice, exportPrice, profit, quantity, tittle, publishing, bookStatus);
-        System.out.println("Danh sach tac gia: ");
-
+        System.out.printf("%s, %s, %f, %f, %f, %d, %s, %s, %b\n", bookId, bookName, importPrice, exportPrice, profit, quantity, tittle, publishing, bookStatus);
+        System.out.println("Danh sách tác giả: ");
         for (Author author : authorArrayList) {
-            System.out.printf("%d.  %s",AuthorMethod.authorList.indexOf(author)+1,author.getAuthorName());
+            System.out.printf("%d.  %s\n",author.getAuthorId(),author.getAuthorName());
         }
     }
     public static ArrayList<Book> getData() {
@@ -375,10 +374,10 @@ public class Book implements IBook,Serializable, Comparator<Book> {
                         this.setBookStatus(false);
                     }
                 }else {
-                    System.out.printf("so luong sach ban vuot qua so luong hien co(%d)\n",this.getQuantity());
+                    System.out.printf("Số lượng sách vượt quá số lượng hiện có(%d)\n",this.getQuantity());
                 }
         }else {
-            System.out.println("so luong phai lon hon 0");
+            System.out.println("Số lượng sách phải lớn hơn 0");
         }
     }
 

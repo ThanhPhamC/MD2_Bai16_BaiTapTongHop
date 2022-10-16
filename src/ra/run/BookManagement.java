@@ -36,7 +36,7 @@ public class BookManagement {
     public static void authorManagement() {
         boolean outCase = true;
         do {
-            System.out.println("\n\n+---------------------------------------------------------+");
+            System.out.println("\n\n+----------------------------------------------------------+");
             System.out.println("|                       QUẢN LÝ TÁC GIẢ                    |");
             System.out.println("+----------------------------------------------------------+");
             System.out.println("|             1. Danh sách tác giả.                        |");

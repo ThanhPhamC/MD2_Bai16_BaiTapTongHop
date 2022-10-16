@@ -47,14 +47,14 @@ public class Author implements IBook, Serializable {
         Scanner sc = new Scanner(System.in);
         this.authorId = AuthorMethod.authorList.size() + 1;
         this.authorName = checkinputName(sc);
-        System.out.println("Nhap trang thai tac gia");
+        System.out.println("Nhập trạng thái tác giả:");
         this.authorStatus = Boolean.parseBoolean(sc.nextLine());
     }
 
     public static String checkinputName(Scanner sc) {
         String authorName;
         do {
-            System.out.println("Nhap ten tac gia");
+            System.out.println("Tên tác giả: ");
             authorName = sc.nextLine();
             if (authorName.trim().length() != 0) {
                 if (authorName.trim().length() > 6 && authorName.trim().length() < 50) {
@@ -65,7 +65,7 @@ public class Author implements IBook, Serializable {
                         }
                     }
                     if (!check) {
-                        System.out.println("ten bi trung");
+                        System.out.println("Tên bị trùng.");
                     } else {
                         break;
                     }
@@ -73,7 +73,7 @@ public class Author implements IBook, Serializable {
                     System.out.println("Tên tác giả gồm từ 6-50 ký tự.");
                 }
             } else {
-                System.out.println("khong de trong");
+                System.out.println("Không để trống.");
             }
         } while (true);
         return authorName;

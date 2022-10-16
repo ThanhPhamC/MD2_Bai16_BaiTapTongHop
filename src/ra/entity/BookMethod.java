@@ -21,21 +21,21 @@ public class BookMethod {
         int count;
         while (true) {
             try {
-                System.out.println("nhap so luong muon them");
+                System.out.println("Nhập số lượng muốn thêm:");
                 count = Integer.parseInt(sc.nextLine());
                 if (count > 0) {
                     break;
                 } else {
-                    System.out.println("nhap so nguyen lon hon 0.");
+                    System.out.println("Số lượng phải lớn hơn 0.");
                 }
             } catch (Exception e) {
-                System.out.println(" sai dinh dang");
+                System.out.println("Sai định dạng.");
             }
 
         }
         for (int i = 0; i < count; i++) {
             Book book = new Book();
-            System.out.printf("Sach thu %d\n ", (i + 1));
+            System.out.printf("Sách thứ %d\n ", (i + 1));
             book.inputData();
             bookList.add(book);
         }
@@ -43,31 +43,31 @@ public class BookMethod {
     }
 
     public static void editBook(Scanner sc) {
-        System.out.println("nhap id sach muon cap nhap: ");
+        System.out.println("Nhập Id sách muốn cập nhập: ");
         String inputId = sc.nextLine();
         for (Book book : bookList) {
             if (book.getBookId().trim().equals(inputId.trim())) {
-                System.out.println("nhap ten sach");
+                System.out.println("Tên sách mới:");
                 book.setBookName(pushBookName(sc));
-                System.out.println("nhap gia sach");
+                System.out.println("Giá nhập:");
                 book.setImportPrice(pushBookPice(sc));
-                System.out.println("nhap gia ban");
+                System.out.println("Giá bán:");
                 book.setExportPrice(pushExportBookPrice(sc, book.getImportPrice()));
-                System.out.println("nhap so luong sach");
+                System.out.println("Số lượng:");
                 book.setQuantity(pushBookQuantity(sc));
-                System.out.println("nhap tieu de sach");
+                System.out.println("Tiêu đề:");
                 book.setTittle(sc.nextLine());
-                System.out.println("nhap noi dung sach");
+                System.out.println("Nội dung");
                 book.setContent(sc.nextLine());
-                System.out.println("nha xuat ban");
+                System.out.println("Nhà xuất bản:");
                 book.setPublishing(sc.nextLine());
-                System.out.println("Trang thai sach");
+                System.out.println("Trạng thái:");
                 book.setBookStatus(Boolean.parseBoolean(sc.nextLine()));
-                System.out.println("Chon tac gia");
+                System.out.println("Tác giả:");
                 book.setAuthorArrayList(pushAuthorbook(sc));
-                System.out.println("cap nhap thanh cong");
+                System.out.println("Cập nhập thành công");
             } else {
-                System.out.println("sach khong ton tai ");
+                System.out.println("Id không tồn tại ");
             }
         }
     }
@@ -80,14 +80,14 @@ public class BookMethod {
                 book.setBookStatus(false);
             }
         }
-        System.out.println("cap nhap thanh cong");
+        System.out.println("Cập nhập thành công.");
     }
 
     public static void profitBook() {
         for (Book book : bookList) {
             book.calProfit();
         }
-        System.out.println("Da tinh xong loi nhuan");
+        System.out.println("Đã tính xong lợi nhuận");
     }
 
     public static void arrangePriceBook() {
@@ -106,7 +106,7 @@ public class BookMethod {
     }
 
     public static void searchBook(Scanner sc) {
-        System.out.println("Nhap ten sach hoac ten tac gia ");
+        System.out.println("Nhập tên sách hoặc tên tác giả. ");
         String inputSearch = sc.nextLine();
         for (Book book : bookList) {
             if (book.getBookId().equals(inputSearch.trim())) {
@@ -121,24 +121,24 @@ public class BookMethod {
 
     }
         public static void saleBook (Scanner sc){
-            System.out.println("nhap id sach muon ban");
+            System.out.println("Nhập Id sách muốn bán:");
             String inputID = sc.nextLine();
             for (Book book : bookList) {
                 if (book.getBookId().equals(inputID.trim())) {
                     int quatity;
                     do {
                         try {
-                            System.out.println("nhap so luong sach muon ban");
+                            System.out.println("Số lượng bán:");
                             quatity = Integer.parseInt(sc.nextLine());
                             if (quatity > 0 && quatity < book.getQuantity()) {
                                 book.setQuantity(book.getQuantity() - quatity);
-                                System.out.println("ban thanh cong");
+                                System.out.println("Bán thành công.");
                                 break;
                             } else {
-                                System.out.printf("so luong ban phai nho hon so luong ton kho(%d).\n", book.getQuantity());
+                                System.out.printf("Số lượng bán phải nhỏ hơn số lượng tồn kho(%d).\n", book.getQuantity());
                             }
                         } catch (Exception e) {
-                            System.out.println("sai dinh dang nhap lai");
+                            System.out.println("Sai định dạng");
                         }
 
                     } while (true);

@@ -21,21 +21,21 @@ public class AuthorMethod {
         int count;
         while (true) {
             try {
-                System.out.println("nhap so luong muon them");
+                System.out.println("Nhập số lượng muốn thêm.");
                 count = Integer.parseInt(sc.nextLine());
                 if (count > 0) {
                     break;
                 } else {
-                    System.out.println("nhap so nguyen lon hon 0.");
+                    System.out.println("Số lượng phải lớn hơn 0.");
                 }
             } catch (Exception e) {
-                System.out.println(" sai dinh dang");
+                System.out.println("Sai định dạng.");
             }
 
         }
         for (int i = 0; i < count; i++) {
             Author author = new Author();
-            System.out.printf("Tac gia thu %d\n ", (i + 1));
+            System.out.printf("Tác giả thứ %d\n ", (i + 1));
             author.inputData();
             authorList.add(author);
         }
@@ -45,15 +45,15 @@ public class AuthorMethod {
 
     public static void editAuthor(Scanner sc) {
         authorList = getData();
-        System.out.println("nhap id tac gia muon cap nhap: ");
+        System.out.println("Nhập Id tác giả cần cập nhập: ");
         int inputId = Integer.parseInt(sc.nextLine());
         boolean check = true;
         for (Author author : authorList) {
             if (author.getAuthorId()==inputId){
                author.setAuthorName(checkinputName(sc));
-                System.out.println("Trang thai tac gia");
+                System.out.println("Trạng thái tác giả:");
                author.setAuthorStatus(Boolean.parseBoolean(sc.nextLine()));
-                System.out.println("cap nhap thanh cong");
+                System.out.println("Cập nhập thành công.");
                 check=true;
                 break;
             }else {
@@ -63,13 +63,13 @@ public class AuthorMethod {
         if (check){
             insertData(authorList);
         }else {
-            System.out.println(" id khong ton tai");
+            System.out.println("Id không tồn tại.");
         }
 
     }
     public static void updateStatusAuthor(Scanner sc){
         authorList = getData();
-        System.out.println("nhap id tac gia muon cap nhap: ");
+        System.out.println("Nhập Id tác giả muốn cập nhập: ");
         int inputId = Integer.parseInt(sc.nextLine());
         for (Author author : authorList) {
             if (author.getAuthorId()==inputId){
@@ -77,6 +77,6 @@ public class AuthorMethod {
             }
         }
         insertData(authorList);
-        System.out.println("da cap nhap trang thai tac gia thanh cong");
+        System.out.println("Cập nhập thành công.");
     }
 }
